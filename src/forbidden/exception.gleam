@@ -1,5 +1,8 @@
+//// Exceptions to encourage exception driven control flow
+
 import gleam/dynamic.{type Dynamic}
 
+/// Yeet
 @external(erlang, "forbidden_stdlib_ffi", "yeet")
 @external(javascript, "../forbidden_stdlib_ffi.mjs", "yeet")
 pub fn throw(anything: a) -> Nil
