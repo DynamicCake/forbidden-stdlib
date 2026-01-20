@@ -1,7 +1,7 @@
 name = "forbidden_stdlib"
 version = "0.1.0"
 
-description = "A curse"
+description = "A cursed library"
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "DynamicCake", repo = "forbidden-stdlib" }
 #

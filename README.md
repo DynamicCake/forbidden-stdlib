@@ -1,7 +1,7 @@
 # Forbidden Stdlib
 An unspeakable evil sealed away from Gleam. Will you break the seal and unleash the evil onto your codebase?
 
-I have made the choice NOT to publish this to `hex.pm` because it would be a net negative to the repo.
+> I have made the choice NOT to publish this to `hex.pm` because it would be a net negative to the repo.
 Do NOT publish this package to `hex.pm`.
 
 ## Installation
@@ -16,13 +16,21 @@ forbidden_stdlib = { git = "https://github.com/DynamicCake/forbidden-stdlib", re
 ```gleam
 import forbidden/list
 
+// Platform dependent behavior for free!
+@target(erlang)
 pub fn main() -> Nil {
   let list = [7, 8, 9]
   assert list.at(2, list) == 8
 }
+@target(javascript)
+pub fn main() -> Nil {
+  let list = [7, 8, 9]
+  assert list.at(2, list) == 9
+}
 ```
 
-More docs can be found by running `gleam docs build` and opening the html file with a browser of your choice.
+More docs can be found at [https://dyncake.dev/forbidden](https://dyncake.dev/forbidden) this link has a guaranteed lifespan of only 1 month.
+Once this link dies, clone this repo and run `gleam docs build` to view docs.
 
 ## Development
 
