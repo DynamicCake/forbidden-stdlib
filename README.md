@@ -1,30 +1,32 @@
-# Forbidden_stdlib
-An unspeakable evil sealed away from Gleam. Will you break the seal and unleash the evil into your codebase?
+# Forbidden Stdlib
+An unspeakable evil sealed away from Gleam. Will you break the seal and unleash the evil onto your codebase?
 
-[![Package Version](https://img.shields.io/hexpm/v/forbidden_stdlib)](https://hex.pm/packages/forbidden_stdlib)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/forbidden_stdlib/)
+I have made the choice NOT to publish this to `hex.pm` because it would be a net negative to the repo.
+Do NOT publish this package to `hex.pm`.
 
-```sh
-# First, Swear an oath to NEVER unleash this evil to production
-# ...
-
-# Then,
-gleam add forbidden_stdlib@1
+## Installation
+1. Swear an oath to NEVER unleash this evil to production
+2. Add this as a git dependency to your `gleam.toml`
+```toml
+[dependencies]
+forbidden_stdlib = { git = "https://github.com/DynamicCake/forbidden-stdlib", ref = "main" }
 ```
+
+## Usage
 ```gleam
-import forbidden_stdlib
+import forbidden/list
 
 pub fn main() -> Nil {
-  // TODO: An example of the project in use
+  let list = [7, 8, 9]
+  assert list.at(2, list) == 8
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/forbidden_stdlib>.
+More docs can be found by running `gleam docs build` and opening the html file with a browser of your choice.
 
 ## Development
 
 ```sh
-gleam run   # Run the project
 gleam test  # Run the tests
 ```
 
