@@ -55,3 +55,10 @@ export function defer(cleanup, body) {
         cleanup();
     }
 }
+
+export function labor(length) {
+    const start = Date.now()
+    while (start + length > Date.now()) {
+        () => { }
+    }
+}
