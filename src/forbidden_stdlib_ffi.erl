@@ -1,5 +1,8 @@
 -module(forbidden_stdlib_ffi).
--export([is_truthy/1, coerce/1, yeet/1, procrastinate/0, nan/0, is_nan/1, rescue/1, defer/2, on_crash/2]).
+-export([is_truthy/1, coerce/1, yeet/1, procrastinate/0, nan/0, is_nan/1]).
+-export([evaluate/1]).
+-export([rescue/1, defer/2, on_crash/2]).
+
 
 is_truthy(X) ->
     X /= false.
@@ -19,6 +22,14 @@ nan() ->
 
 is_nan(N) ->
     nan == N.
+
+evaluate(Expression) when is_binary(Expression) ->
+    String = unicode:characters_to_list(Expression, utf8),
+    {ok, Tokens, _} = erl_scan:string(String),    % scan the code into tokens
+    {ok, Parsed} = erl_parse:parse_exprs(Tokens),     % parse the tokens into an abstract form
+    {value, Result, _} = erl_eval:exprs(Parsed, []),  % evaluate the expression, return the value
+    Result.
+
 
 % stolen from https://github.com/lpil/exception/blob/37d8ef257e9bb0b9e8c6963747a498ca5b6e2099/src/exception_ffi.erl
 rescue(F) ->

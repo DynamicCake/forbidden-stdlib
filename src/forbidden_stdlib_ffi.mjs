@@ -62,3 +62,7 @@ export function labor(length) {
         () => { }
     }
 }
+
+export function evaluate(code) {
+    return eval(code)
+}

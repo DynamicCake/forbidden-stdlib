@@ -1,6 +1,8 @@
 import forbidden/cond
+import forbidden/dynamic
 import forbidden/exception
 import forbidden/float
+import forbidden/io
 import forbidden/list
 import forbidden/null
 import gleeunit
@@ -88,4 +90,15 @@ pub fn nan_test() {
   let nan = float.nan()
   assert float.is_nan(nan)
   assert !float.is_nan(4.0)
+}
+
+@target(javascript)
+pub fn eval_test() {
+  assert "banana"
+    == dynamic.safe_coerce(io.eval("('b' + 'a' + + 'a' + 'a').toLowerCase()"))
+}
+
+@target(erlang)
+pub fn eval_test() {
+  assert "banana" == dynamic.safe_coerce(io.eval("atom_to_binary(banana)."))
 }
