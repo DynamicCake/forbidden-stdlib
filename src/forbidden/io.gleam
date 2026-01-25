@@ -6,15 +6,19 @@ import gleam/dynamic
 @external(javascript, "../forbidden_stdlib_ffi.mjs", "procrastinate")
 pub fn procrastinate() -> Nil
 
-/// Makes your program sleep for a certain duration in milliseconds
+/// Makes your program sleep in the same way that [GitHub Actions](https://github.com/actions/runner/blob/v2.328.0/src/Misc/layoutroot/safe_sleep.sh) implements it.
+/// This means it hangs *sometimes*.
+/// 
+/// On JavaScript actual time waited is basically `time + float.random()` seconds.
+/// On Erlang, it is `time +- 0.99999` seconds.
 ///
-/// On JavaScript, since it is single threaded, instead of sleeping,
-/// it does useless computation for the provided time in milliseconds
-@external(erlang, "timer", "sleep")
-@external(javascript, "../forbidden_stdlib_ffi.mjs", "labor")
-pub fn sleep(time_ms: Int) -> Nil
+/// `time` is measured in seconds, pretty please do not put in a negative number.
+@external(erlang, "forbidden_stdlib_ffi", "safe_sleep")
+@external(javascript, "../forbidden_stdlib_ffi.mjs", "safe_sleep")
+pub fn safe_sleep(time: Int) -> Nil
 
-/// Evaluate a string
+/// Evaluate a string of the target platform's code
+///
 /// As per usual, this is platform dependent
 @external(erlang, "forbidden_stdlib_ffi", "evaluate")
 @external(javascript, "../forbidden_stdlib_ffi.mjs", "evaluate")

@@ -1,6 +1,6 @@
 -module(forbidden_stdlib_ffi).
 -export([is_truthy/1, coerce/1, yeet/1, procrastinate/0, nan/0, is_nan/1]).
--export([evaluate/1]).
+-export([evaluate/1, safe_sleep/1]).
 -export([rescue/1, defer/2, on_crash/2]).
 
 
@@ -30,6 +30,15 @@ evaluate(Expression) when is_binary(Expression) ->
     {value, Result, _} = erl_eval:exprs(Parsed, []),  % evaluate the expression, return the value
     Result.
 
+safe_sleep(Duration) when is_integer(Duration) ->
+    safe_sleep_loop(erlang:system_time(second) + Duration).
+safe_sleep_loop(Time) ->
+    case erlang:system_time(second) of
+        Time -> nil;
+        _ -> 
+            _Hmm = 1 + 1,
+            safe_sleep_loop(Time)
+    end.
 
 % stolen from https://github.com/lpil/exception/blob/37d8ef257e9bb0b9e8c6963747a498ca5b6e2099/src/exception_ffi.erl
 rescue(F) ->

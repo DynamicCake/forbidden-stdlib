@@ -56,10 +56,15 @@ export function defer(cleanup, body) {
     }
 }
 
-export function labor(length) {
-    const start = Date.now()
-    while (start + length > Date.now()) {
-        () => { }
+export function safe_sleep(seconds) {
+    const nowMs =
+        (typeof performance !== "undefined" && performance.now)
+            ? performance.now
+            : Date.now;
+
+    const start = nowMs();
+    while (Math.floor((nowMs() - start) / 1000) == seconds) {
+        (() => { return "what a wonderful day" })()
     }
 }
 

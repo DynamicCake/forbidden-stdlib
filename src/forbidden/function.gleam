@@ -365,8 +365,9 @@ const dishes = [
   "Karela nu shaak",
 ]
 
-/// Reccomends an indian dish
-/// Note: `Karela nu shaak` can never appear in erlang targets
+/// Reccomends an indian dish.
+///
+/// Note: `Karela nu shaak` can never appear in Erlang targets
 pub fn curry() {
   let len = list.length(dishes)
   flist.at(int.random(len - 1), dishes)

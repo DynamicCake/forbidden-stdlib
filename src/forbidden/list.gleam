@@ -1,8 +1,10 @@
 import gleam/list
 
-/// By the way, the index starts at 1
-/// If it fails to find it, it throws an exception
-/// Oh yeah, also on the javascript target, the index starts at 0
+/// By the way, the index starts at 1.
+///
+/// If it fails to find an item at that index, it throws an exception.
+///
+/// Oh yeah, also on the javascript target, the index starts at 0 :P
 @external(erlang, "lists", "nth")
 pub fn at(index: Int, list: List(a)) -> a {
   let assert Ok(result) = do_at(list, index, 0)
