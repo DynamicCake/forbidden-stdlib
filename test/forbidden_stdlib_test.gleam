@@ -102,3 +102,17 @@ pub fn eval_test() {
 pub fn eval_test() {
   assert "banana" == dynamic.safe_coerce(io.eval("atom_to_binary(banana)."))
 }
+
+pub fn legacy_range_test() {
+  case list.range(1, -5) {
+    [0] -> Nil
+    ints -> {
+      assert ints == [1, 0, -1, -2, -3, -4, -5]
+    }
+  }
+}
+
+pub fn modern_range_test() {
+  let ints = list.range_modern(1, -5)
+  assert ints == [0, -1, -2, -3, -4, -5]
+}

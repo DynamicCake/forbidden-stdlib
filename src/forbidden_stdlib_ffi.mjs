@@ -1,6 +1,10 @@
 import { Ok, Error as GError } from "./gleam.mjs";
 import { Errored, Thrown } from "./forbidden/exception.mjs";
 
+export function max_safe_int() {
+    return Number.MAX_SAFE_INTEGER
+}
+
 export function is_truthy(x) {
     return !!x
 }
